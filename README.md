@@ -10,12 +10,12 @@ The NFTs will look like a game card with a photograph of the horse, plus a set o
 - Dynamic traits: Number of races and victories, prizes won, performance, etc.
 In order to cover costs, the platform will apply fees when horses are sold, traits are updated and horses are used by external Dapps.
 
-##Example workflows
+## Example workflows
 1. The owner mints NFTs matching real racing horses, with a cost of acquisition based on the quality of the horse.
 2. Users will be able to buy these NFTs.
 3. The contract will transfer ETH fees to the development team.
 4. The contract will update periodically the dynamic traits of the horses. Owners  will not be able to update them.
 5. Both the development team, the owners or anyone will be able to develop smart contracts or Dapps to play with the NFTs. When interacting with the smart contract, some fees may apply.
 
-##Next steps
+## Next steps
 I tried to keep the idea as simple as possible. As the development advances, other aspects could be addressed: new use cases, use of oracles to fetch horses' data, speficic token to buy the horses and operate the smart contracts, etc. 
