@@ -1,0 +1,8 @@
+.env
+.DS_Store
+.gitattributes
+build
+node_modules
+scripts
+client/node_modules
+truffle-config.js
