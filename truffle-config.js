@@ -1,6 +1,6 @@
-require("dotenv").config
-const path = require("path");
+require("dotenv").config();
 
+const path = require("path");
 const HDWalletProvider = require('truffle-hdwallet-provider');
 const fs = require('fs');
 
@@ -12,7 +12,7 @@ module.exports = {
     kovan: {
       networkCheckTimeout: 100000,
       provider: function() {
-        return new HDWalletProvider(process.env.MNEMONIC, "https://kovan.infura.io/v3/${process.env.INFURA_API_KEY}");
+        return new HDWalletProvider(process.env.MNEMONIC, process.env.INFURA_API_URL);
       },
       network_id: 42
     }
