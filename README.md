@@ -30,13 +30,19 @@ https://dmolinac.github.io/blockchain-developer-bootcamp-final-project/
 `0xBbc9368898422Cc9FfaBEf8ea66210D3D011512F`
 
 ## Directory structure
-`client`: Project's React frontend.
-`contracts`: Smart contracts that are deployed in the Kovan testnet.
-`migrations`: Migration files for deploying contracts in contracts directory.
-`scripts`: Scripts to automate some operations.
-`test`: Tests for smart contracts.
+- `client`: Project's React frontend.
+
+- `contracts`: Smart contracts that are deployed in the Kovan testnet.
+
+- `migrations`: Migration files for deploying contracts in contracts directory.
+
+- `scripts`: Scripts to automate some operations.
+
+- `test`: Tests for smart contracts.
 
 ## Instructions
+
+The development, test and deploy of the contracts and the React Dapp have been performed in Kovan testnet, mainly to be able to integrate with the Chainlink oracle.
 
 ### Deployment of contracts
 
@@ -66,6 +72,11 @@ I have included a file .env.template with the two environment variables to custo
    
 `truffle deploy --network kovan --reset`
 
+6. Oracle contract
+
+The oracle contract is inherited from Chainlink and it is fixed as it needs to call the local Chainlink node. It was deployed using Remix. The address is included in `MetaturfHorseRacingData` contract. 
+
+
 ### Configuration of MetaturfNFT contract
 
 In order for the Dapp to work, we need to set the address of MetaturfHorseRacingData contract in MetaturfNFT:
@@ -89,6 +100,7 @@ Finally, we need to send LINK tokens (1 LINK for each request) to the MetaturfHo
 LINK faucet: https://faucets.chain.link/kovan
 
 We can check the contract address by typing `mtdata.address` in Truffle console.
+
 
 ### Calling the contracts from Truffle console
 
@@ -114,9 +126,13 @@ Some examples:
 
 - Get number of tokens: `nft.getNumberOfTokens()`
 
+
 ### Accessing or—if your project needs a server (not required)—running your project
 
 The project interacts with a Chalinlink node installed locally. We have developed the project so it can be operated without this requirement by calling `setHorseFromCSV` from `MetaturfHorseRacingData`contract (see example above). In case the server is not running, please write to dmolinac@gmail.com.
 
 
+
 ### Running your smart contract unit tests
+
+`truffle test --network kovan`
