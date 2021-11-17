@@ -1,0 +1,12 @@
+Contract: MetaturfHorseRacingData
+Network: Kovan
+Address: 0x05D2ea8746026245aE9Ab034C3DCb5B53B8642b6
+
+Contract: MetaturfNFT
+Network: Kovan
+Address: 0xa387a844be7262BBEDEBB6587FaCD6FedeE63090
+
+Contract: Oracle
+Network: Kovan
+Address: 0x9dD3298DAd96648E7fdF5632b9813D22Bbb3eb61
+ 
