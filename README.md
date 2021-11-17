@@ -79,9 +79,9 @@ The oracle contract is inherited from Chainlink and it is fixed as it needs to c
 
 ### Configuration of MetaturfNFT contract
 
-In order for the Dapp to work, we need to set the address of MetaturfHorseRacingData contract in MetaturfNFT:
+In order for the Dapp to work, we need to set the address of `MetaturfHorseRacingData` contract in `MetaturfNFT` contract:
 
-First, we get the address of MetaturfHorseRacingData address:
+First, we get the address of `MetaturfHorseRacingData` address:
 
 `npx truffle console --network kovan`
 
@@ -89,13 +89,13 @@ First, we get the address of MetaturfHorseRacingData address:
 
 `truffle(kovan)> let mtaddress = mtdata.address`
 
-Then, we register the address in MetaturfNFT contract:
+Then, we register the address in `MetaturfNFT` contract:
 
 `truffle(kovan)> let nft = await MetaturfNFT.deployed()`
 
 `truffle(kovan)> nft.registerMetaturfHorseRacingDataAddress(mtdata.address)`
 
-Finally, we need to send LINK tokens (1 LINK for each request) to the MetaturfHorseRacingContract (i.e. using Metamask):
+Finally, we need to send LINK tokens (1 LINK for each request) to the `MetaturfHorseRacingContract` (i.e. using Metamask):
 
 LINK faucet: https://faucets.chain.link/kovan
 
