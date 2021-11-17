@@ -94,38 +94,25 @@ We can check the contract address by typing `mtdata.address` in Truffle console.
 
 Some examples:
 
-- Calling the oracle to retrieve the winner of a race and checking the result:
-  
-For this call to work, the local node must be active. In case it is not up, please write me to dmolinac@gmail.com.
+- Calling the oracle to retrieve the winner of a race and checking the result. For this call to work, the local node must be active. In case it is not up, please write me to dmolinac@gmail.com.
   
 `let result = await mtdata.requestOracleRaceWinner(456)`
+
 `result.logs[0]`
 
-- Setting a horse without calling the oracle (only for contract owner):
-  
-This operation is only for testing purposes, in mainnet this function should be removed)
+- Setting a horse without calling the oracle (only for contract owner). This operation is only for testing purposes, in mainnet this function should be removed)
 
 `mtdata.setHorseFromCSV("793,VEGIA,3")`
 
-- Get information from a horse stored:
+- Get information from a horse stored: `mtdata.getHorse(793)`
 
-`mtdata.getHorse(793)`
+- List horses: `mtdata.listHorses()`
 
-- List horses:
+- Mint a horse: `nft.mint(12,"Horse_name")`
 
-`mtdata.listHorses()`
+- Get NFT Info: `nft.getHorseNFTInfo(0);`
 
-- Mint a horse:
-  
-`nft.mint(12,"Horse_name")`
-
-- Get NFT Info:
-
-`nft.getHorseNFTInfo(0);`
-
-- Get number of tokens:
-
-`nft.getNumberOfTokens()`
+- Get number of tokens: `nft.getNumberOfTokens()`
 
 ### Accessing or—if your project needs a server (not required)—running your project
 
