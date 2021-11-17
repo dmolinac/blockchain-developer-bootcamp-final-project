@@ -30,15 +30,13 @@ https://dmolinac.github.io/blockchain-developer-bootcamp-final-project/
 `0xBbc9368898422Cc9FfaBEf8ea66210D3D011512F`
 
 ## Directory structure
-- `client`: Project's React frontend.
+`client`: Project's React frontend.
 
-- `contracts`: Smart contracts that are deployed in the Kovan testnet.
+`contracts`: Smart contracts that are deployed in the Kovan testnet.
 
-- `migrations`: Migration files for deploying contracts in contracts directory.
+`migrations`: Migration files for deploying contracts in contracts directory.
 
-- `scripts`: Scripts to automate some operations.
-
-- `test`: Tests for smart contracts.
+`test`: Tests for smart contracts.
 
 ## Instructions
 
