@@ -99,16 +99,11 @@ class App extends Component {
       axios.get(`https://ghdbadmin.metaturf.com/rest/rest_web3.php?resource=lastresults&id=14&format=json`).then(res => {
         const daysofraces = res.data.data.rows;
         this.setState({ daysofraces });
-      
-        //console.log(JSON.stringify({ daysofraces}, null, 2));
-        //console.log(res.data.data.rows.length);
     
         let i=0, race_request, racesdate, racecourseid, lastraces = "";
     
         for (i = 0; i < res.data.data.rows.length; i++) {
           try {
-            //console.log(res.data.data.rows[i]["racecourse"] + "-" + res.data.data.rows[i]["racecourseid"] + 
-            //                                  "-" + res.data.data.rows[i]["racesdate"]);
                 
             racesdate = res.data.data.rows[i]["racesdate"];
             racecourseid = res.data.data.rows[i]["racecourseid"];
@@ -175,7 +170,7 @@ class App extends Component {
         
         <div className="statemessage">{this.state.state_message}</div>
 
-        <h2>Metaturf REST API</h2>
+        <h2>Metaturf REST API (off-chain info)</h2>
 
         <h3>Last days of races in Spain: {this.state.daysofraces.length}</h3>
         <ul className="list">
@@ -203,8 +198,6 @@ class App extends Component {
         <br/><h2>NFTs (everyone can mint)</h2>
         
         <h3>Mint</h3> 
-        {/* <div><button onClick={this.mint}>Mint</button></div> */}
-        {/* <div><button onClick={this.sayHello}>Default</button></div> */}
 
         <div><MintForm metaturfNFTInstance={this.state.metaturfNFTInstance}
                   account={this.state.accounts[0]} setStateMessage = {this.setStateMessage}/></div>
@@ -214,7 +207,6 @@ class App extends Component {
         {<ViewTokenList metaturfNFTInstance={this.state.metaturfNFTInstance} setStateMessage = {this.setStateMessage}/>}
 
         {/* <ViewNFT metaturfNFTInstance={this.state.metaturfNFTInstance} tokenid="1"/> */} 
-        {/* <ViewNFT metaturfNFTInstance={this.state.metaturfNFTInstance} tokenid="2"/> */}
 
       </div>
 
