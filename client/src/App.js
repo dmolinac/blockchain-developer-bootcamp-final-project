@@ -171,7 +171,7 @@ class App extends Component {
 
         <div align="right">Your account is: {this.state.accounts[0]}</div><br></br>
 
-        <h1>Spanish Horseracing data and NFTs</h1>
+        <h1>Metaturf Horse Racing Data & on-chain NFTs</h1>
         
         <div className="statemessage">{this.state.state_message}</div>
 
@@ -185,7 +185,7 @@ class App extends Component {
         <h3>Last races available to fecth winners:</h3>
         <div>{this.state.races}</div>
 
-        <br/><h2>Horses on-chain</h2>
+        <br/><h2>Horses on-chain (only for contract owner)</h2>
 
         <h3>Import horse on-chain using Chainlink oracle (choose Race ID from above)</h3>
         <div><ImportHorseForm metaturfHorseRacingDataInstance={this.state.metaturfHorseRacingDataInstance}
@@ -200,7 +200,7 @@ class App extends Component {
         <br/><h3>Horses imported</h3>
         <ViewHorseList metaturfHorseRacingDataInstance={this.state.metaturfHorseRacingDataInstance} />
 
-        <br/><h2>NFTs</h2>
+        <br/><h2>NFTs (everyone can mint)</h2>
         
         <h3>Mint</h3> 
         {/* <div><button onClick={this.mint}>Mint</button></div> */}
