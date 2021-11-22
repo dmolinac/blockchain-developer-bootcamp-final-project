@@ -1,33 +1,70 @@
 # Blockchain Developer Bootcamp Final Project
 
-# Upgradeable NTFs for horse racing games in Ethereum
+# Fully on-chain dynamic NTFs for Spanish horseracing in Ethereum
 
 ## About
-The purpose of this project is to develop a platform that manages NFTs matching real race horses. These NFTs will be upgradeable with traits stored on-chain so an ecosystem of games, Dapps, etc. can be built around this.
-The owner of the smart contract will mint horses that match real thoroughbreds. Users will be able to acquire these NFTs. Some traits of the NFTs will be updated in order to track number of victories, performances, value of the horse, etc.
-The NFTs will look like a game card with a photograph of the horse, plus a set of fields including:
-- Fixed traits: male/female, birthdate, etc.
-- Dynamic traits: Number of races and victories, prizes won, performance, etc.
-In order to cover costs, the platform will apply fees when horses are sold, traits are updated and horses are used by external Dapps.
+The purpose of this project is to develop a platform to manage on-chain data for Spanish horse racing so these data can be used by external applications (games, dApps, etc.)
 
-### Example workflows
-1. The owner mints NFTs matching real racing horses, with a cost of acquisition based on the quality of the horse.
-2. Users will be able to buy these NFTs.
-3. The contract will transfer ETH fees to the development team.
-4. The contract will update periodically the dynamic traits of the horses. Owners  will not be able to update them.
-5. Both the development team, the owners or anyone will be able to develop smart contracts or Dapps to play with the NFTs. When interacting with the smart contract, some fees may apply.
+One of this applications, included in the project, is a fully on-chain thoroughbred NFTs representing real race horses that anyone can acquire. The NFTs look like a game card with SVG and horse data. The NFTs are upgradeable with the current number of victories of the horse represented.
 
-### Next steps
-I tried to keep the idea as simple as possible. As the development advances, other aspects could be addressed: new use cases, use of oracles to fetch horses' data, speficic token to buy the horses and operate the smart contracts, etc. 
+In order to fetch horses' data, I have installed a local Chainlink node with a specific jobId that requests the data to [Metaturf Spanish horse racing platform](https://www.metaturf.com). I am partner at this company.
 
 ## Frontend access
 https://dmolinac.github.io/blockchain-developer-bootcamp-final-project/
 
 ## Screencast
-(TBC)
+https://youtu.be/FrQsV3mwQEs
 
-## Public Ethereum acccount for the certification NFT
-`0xBbc9368898422Cc9FfaBEf8ea66210D3D011512F`
+## Example workflows
+1. The contract owner checks the last races' IDs and requests the information of a horse asking for the winner of a race. The information retrieved is stored on-chain.
+2. Any address can mint a horse from the list of on-chain horses stored. Every horse can be minted once.
+3. The contract owner can periodically update the number of races winned by a horse. Token owners cannot do this.
+4. The number of victories is shown in the NFT (tokenURI).
+
+
+In order to cover costs, the platform will apply fees when horses are sold, traits are updated and horses are used by external dApps.
+### Next steps
+I tried to keep the idea as simple as possible, so at this stage the contracts and dApp are in an early stage. Next steps are manyfold:
+
+- Retrieve more information from horses (age, sex, etc.).
+- Implement proxy contract.
+- Set `MetaturfHorseRacingData` address as an argument in `MetaturfNFT` constructor.
+- Fetch information about races. At this stage I have only developed the queries to fetch race information the oracle contract.
+- Check other ways to ask the Oracle about how to retrieve horse information, rather than asking for the winner of a race.
+- Users may have to pay a fee to mint horses to cover costs.
+- NFTs should be better designed with more information, different colors, shapes, etc. and SVG may be pre-codified in base64.
+- Anyone could use the information stored in the `MetaturfHorseRacingData` contract to build other dApps.
+
+
+## Contracts
+
+The dApp is backed by 3 smart contracts:
+### Horse Racing Data
+
+`MetaturfHorseRacingData` contract stores Spanish horse racing data retrieved from a Chainlink oracle. It declares a library with structs to store Horse and Race data.
+
+### Horses' NFTs
+
+`MetaturfNFT` contract mints NFTs 100% on-chain. Inspired in generative NFTs and [Loot project](https://www.lootproject.com)
+
+### Oracle Contract
+`Oracle` Chainlink base contract for Oracles. Deployed with [Remix](https://remix.ethereum.org)
+
+## Tech Stack
+- Blockchain: Ethereum Kovan testnet
+- Solidity Development: [Truffle v5.4.18](https://www.trufflesuite.com/truffle) `npm i -g truffle`
+- Node v12.18.4 
+- Web3.js v1.5.3
+- Wallet Support: [MetaMask](https://metamask.io/)
+- Web Client: [React](https://reactjs.org/)
+
+## Dependencies
+- HDWallet provider ^1.0.6: `npm i @truffle/hdwallet-provider`
+- NFT Contract Library ^4.3.2: [Open Zeppelin](https://openzeppelin.com/) `npm i @openzeppelin/contracts`
+- Oracle Contract Library ^0.2.2: [Chainlink](https://github.com/smartcontractkit) `npm i @chainlink/contracts`
+- React: `npm i -g react`
+- Axios ^0.24.0: required to fetch off-chain data from Metaturf REST API `npm i axios`
+- Dotenv ^10.0.0: `npm i dotenv` 
 
 ## Directory structure
 `client`: Project's React frontend.
@@ -40,7 +77,7 @@ https://dmolinac.github.io/blockchain-developer-bootcamp-final-project/
 
 ## Instructions
 
-The development, test and deploy of the contracts and the React Dapp have been performed in Kovan testnet, mainly to be able to integrate with the Chainlink oracle.
+The development, test and deploy of the contracts and the React dApps have been performed in Kovan testnet, mainly to be able to integrate with the Chainlink oracle.
 
 ### Deployment of contracts
 
@@ -66,18 +103,22 @@ I have included a file .env.template with the two environment variables to custo
    
 `truffle compile`
 
-5. Deploy contracts
+5. Test contracts
+
+`truffle test --network kovan`
+
+6. Deploy contracts
    
 `truffle deploy --network kovan --reset`
 
-6. Oracle contract
+7. Oracle contract
 
-The oracle contract is inherited from Chainlink and it is fixed as it needs to call the local Chainlink node. It was deployed using Remix. The address is included in `MetaturfHorseRacingData` contract. 
+The oracle contract is inherited from Chainlink and it is fixed as it needs to call the local Chainlink node. It was deployed using Remix. The address is set in `MetaturfHorseRacingData` contract. 
 
 
 ### Configuration of MetaturfNFT contract
 
-In order for the Dapp to work, we need to set the address of `MetaturfHorseRacingData` contract in `MetaturfNFT` contract:
+In order for the dApp to work, we need to set the address of `MetaturfHorseRacingData` contract in `MetaturfNFT` contract:
 
 First, we get the address of `MetaturfHorseRacingData` address:
 
@@ -93,9 +134,9 @@ Then, we register the address in `MetaturfNFT` contract:
 
 `truffle(kovan)> nft.registerMetaturfHorseRacingDataAddress(mtdata.address)`
 
-Finally, we need to send LINK tokens (1 LINK for each request) to the `MetaturfHorseRacingContract` (i.e. using Metamask):
+Finally, we need to send LINK tokens (1 LINK per request) to the `MetaturfHorseRacingContract` (i.e. using Metamask):
 
-LINK faucet: https://faucets.chain.link/kovan
+[LINK faucet](https://faucets.chain.link/kovan)
 
 We can check the contract address by typing `mtdata.address` in Truffle console.
 
@@ -124,13 +165,28 @@ Some examples:
 
 - Get number of tokens: `nft.getNumberOfTokens()`
 
+### Deployment of dApp
+
+The Web Client for the dApp has been developed with React.
+
+#### Installation:
+
+`cd client`
+
+`npm install`
+
+#### Deployment to Github pages:
+
+`npm install gh-pages --save-dev`
+
+`npm run predeploy`
+
+`npm run deploy`
+
 
 ### Accessing or—if your project needs a server (not required)—running your project
 
 The project interacts with a Chalinlink node installed locally. We have developed the project so it can be operated without this requirement by calling `setHorseFromCSV` from `MetaturfHorseRacingData`contract (see example above). In case the server is not running, please write to dmolinac@gmail.com.
 
-
-
-### Running your smart contract unit tests
-
-`truffle test --network kovan`
+## Public Ethereum acccount for the certification NFT
+`0xBbc9368898422Cc9FfaBEf8ea66210D3D011512F`
