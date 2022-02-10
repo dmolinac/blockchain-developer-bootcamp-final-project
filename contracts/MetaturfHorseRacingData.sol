@@ -110,7 +110,7 @@ contract MetaturfHorseRacingData is ChainlinkClient {
     /// @dev sets the API requests for the orache (horse and race data)
     constructor() {
         owner = msg.sender;
-        setPublicChainlinkToken();
+        //setPublicChainlinkToken();
         oracle = 0x9dD3298DAd96648E7fdF5632b9813D22Bbb3eb61;
         jobId = "9daa7f5130ab4439a63dee42a15d119a"; //Correcto
         fee = 1 * 10 ** 18; // 1 LINK
